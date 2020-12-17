@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             textError.textContent = e;
         }
     });
-    
+
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
     output.textContent = salary.value;
@@ -28,11 +28,25 @@ window.addEventListener('DOMContentLoaded', (event) => {
 const save = () => {
     try {
         let employeePayrollData = createEmployeePayroll();
+        createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
 }
+//UC12 to save the Employee Payroll Object to Local Storage.
 
+function createAndUpadateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollDate]
+    }
+    alert(employeePayrollList());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
+}
+
+//uc11 Object creation continued
 const createEmpoyeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
     try {
