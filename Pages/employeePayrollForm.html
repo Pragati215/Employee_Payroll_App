@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
     <title>Employee Payroll Form</title>
     <link rel="stylesheet" href="../CSS/employeePayrollForm.css">
-    <!-----UC8----->
-   <script src="../JavaScript/employeePayrollForm.js"></script>
-   <!-----UC9----->
-   <script src="../JavaScript/employeePayrollData.js"></script>
+    
 </head>
 
 <body>
@@ -72,6 +69,7 @@
             <label class="text" for="female">Female</label>
         </div>
     </div>
+
     <div class="row-content">
         <label class="label text" for="department">Department</label>
         <div>
@@ -88,6 +86,7 @@
             <label class="text" for="others">Others</label>
         </div>
     </div>
+
     <div class="row-content">
         <label class="label text" for="salary">Choose your Salary: </label>
         <input class="input" type="range" id="salary" name="salary" min="300000" max="500000" step="1000"
@@ -169,10 +168,14 @@
         <div class="submit-reset">
         <button type="submit" class="button submitButton" id="submitButton">Submit</button>
         <button type="reset" class="resetButton button">Reset</button>
-        </div>
-        </div> 
-
+       </div>
+    </div> 
+    
    </form>
-   
+    </div>
+    <!-----UC8----->
+   <script src="../JavaScript/employeePayrollForm.js"></script>
+   <!-----UC9----->
+   <script src="../JavaScript/employeePayrollData.js"></script>
 </body>
 </html>
