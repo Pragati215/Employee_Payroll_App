@@ -35,7 +35,7 @@ const save = () => {
 }
 
 //uc11 Object creation continued
-const createEmpoyeePayroll = () => {
+const createEmployeePayroll = () => {
     let employeePayrollData = new EmployeePayrollData();
     try {
         employeePayrollData.name = getInputValueById('#name');
@@ -59,13 +59,16 @@ const createEmpoyeePayroll = () => {
 
 function createAndUpdateStorage(employeePayrollData) {
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    if (employeePayrollList != undefined) {
+    //console.log('printlist-',employeePayrollList);
+    if (employeePayrollList != null) {
         employeePayrollList.push(employeePayrollData);
     } else {
-        employeePayrollList = [employeePayrollDate]
+        employeePayrollList = [employeePayrollData]
     }
     alert(employeePayrollList());
-    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
+    //let empdata = JSON.stringify(employeePayrollList);
+    //localStorage.setItem('name',1);
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
 }
 
 const getSelectedValues = (propertyValue) => {
