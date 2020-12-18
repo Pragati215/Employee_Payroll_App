@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             return;
         }
         try {
-            (new EmployeePayrollData).name = name.value;;
+            (new EmployeePayrollData()).name = name.value;;
             textError.textContent = "";
         } catch (e) {
             textError.textContent = e;
@@ -33,18 +33,6 @@ const save = () => {
         return;
     }
 }
-//UC12 to save the Employee Payroll Object to Local Storage.
-
-function createAndUpadateStorage(employeePayrollData) {
-    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    if (employeePayrollList != undefined) {
-        employeePayrollList.push(employeePayrollData);
-    } else {
-        employeePayrollList = [employeePayrollDate]
-    }
-    alert(employeePayrollList());
-    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
-}
 
 //uc11 Object creation continued
 const createEmpoyeePayroll = () => {
@@ -67,6 +55,19 @@ const createEmpoyeePayroll = () => {
     return employeePayrollData;
 }
 
+//UC12 to save the Employee Payroll Object to Local Storage.
+
+function createAndUpdateStorage(employeePayrollData) {
+    let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
+    if (employeePayrollList != undefined) {
+        employeePayrollList.push(employeePayrollData);
+    } else {
+        employeePayrollList = [employeePayrollDate]
+    }
+    alert(employeePayrollList());
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList))
+}
+
 const getSelectedValues = (propertyValue) => {
     let allItems = document.querySelectorAll(propertyValue);
     let selItems = [];
@@ -76,6 +77,10 @@ const getSelectedValues = (propertyValue) => {
     return selItems;
 }
 
+const getInputElementValue = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
 /*
 *1: querySelector is newer feature.
 *2: the querySelector method can be used when selecting by element name, nesting, or class name
@@ -86,6 +91,7 @@ const getInputValueById = (id) => {
     return value;
 }
 
+//UC13 to reset the form on clicking reset
 const resetForm = () => {
     setValue('#name', ' ');
     unsetSelectedValues('[name=profile]');
