@@ -92,6 +92,7 @@ label{
     color: #42515f;
     opacity: 1;
     font-family: Roboto;
+    
     }
     
 .input{
@@ -119,7 +120,8 @@ label{
     border-radius:100%;
     margin-left: 12px;
  }   
-    
+ 
+ 
 select {
     padding: 12px;
     border: 1px solid #ccc;
