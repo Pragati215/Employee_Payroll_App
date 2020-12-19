@@ -1,21 +1,33 @@
-/*UC17 to view Employee Payroll details in a Tabular
-Format from JS File using Template Literals. */ 
+//UC19 to view Employee Payroll details from Local Storage.
    
 //the innerHTML is populated by attaching a Listener to DOMContentLoaded event.
-   window.addEventListener('DOMContentLoaded', (event) => {
-       createInnerHtml();
-   })
-   
+
+let empPayrollList;
+window.addEventListener('DOMContentLoaded', (event) => {
+    empPayrollList = getEmployeePayrollDataFromStorage();
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
+    createInnerHtml();
+}
+);
+const getEmployeePayrollDataFromStorage = () => {
+    let employeePayrollList = createEmployeePayrollJSON();
+    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
+    return localStorage.getItem('EmployeePayrollList') ? JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+}
+
+ /*UC17 to view Employee Payroll details in a Tabular
+Format from JS File using Template Literals. */ 
+
    /* Template literals are enclosed by the backtick (` `) character
        instead of double or single quotes.
     *  Template literals can contain placeholders. These are
        indicated by the dollar sign and curly braces 
    */
-   function createInnerHtml() {
+  createInnerHtml = () => {
+       if (empPayrollList.length == 0) return;
        const headerHtml = `<tr><th></th><th>Name</th><th>Gender</th><th>Department</th>
            <th>Salary</th><th>start Date</th><th>Actions</th></tr>`
        let innerHtml = `${headerHtml}`
-       let empPayrollList = createEmployeePayrollJSON()
        for (const empPayrollData of empPayrollList) {
            innerHtml = `${innerHtml}
            <tr>
