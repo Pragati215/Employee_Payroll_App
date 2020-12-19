@@ -66,7 +66,7 @@ Format from JS File using Template Literals. */
        ]
        return empPayrollListLocal
    }
-   
+
    //Display Employee Details from JSON Object including the Department
    function getDeptHtml(deptList) {
        let deptHtml = ''
