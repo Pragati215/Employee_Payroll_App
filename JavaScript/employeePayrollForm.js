@@ -1,13 +1,15 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
     const textError = document.querySelector('.text-error');
+   //console.log("name-"+name);
     name.addEventListener('input', function () {
         if (name.value.length == 0) {
             textError.textContent = "";
             return;
         }
         try {
-            (new EmployeePayrollData()).name = name.value;;
+            (new EmployeePayrollData()).name = name.value;
+            console.log("name-"+name);
             textError.textContent = "";
         } catch (e) {
             textError.textContent = e;
@@ -80,9 +82,11 @@ const createEmployeePayroll = () => {
     employeePayrollData.department = getSelectedValues('[name=department]');
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.note = getInputValueById('#notes');
-    let date = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
+    let currdate = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
+    employeePayrollData.date = currdate
+    employeePayrollData.id = Date.parse(new Date());
     //employeePayrollData.date = Date.parse(date);
-    employeePayrollData.date = date;
+    //employeePayrollData.startDate = date;
     alert(employeePayrollData.toString());
     return employeePayrollData;
 }
@@ -155,3 +159,5 @@ const setValue = (id, value) => {
     const element = document.querySelector(id);
     element.value = value;
 }
+
+

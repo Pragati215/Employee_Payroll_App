@@ -1,3 +1,4 @@
+
 //UC19 to view Employee Payroll details from Local Storage.
    
 //the innerHTML is populated by attaching a Listener to DOMContentLoaded event.
@@ -36,10 +37,10 @@ Format from JS File using Template Literals. */
            <td>${empPayrollData._gender}</td>
            <td>${getDeptHtml(empPayrollData._department)}</td>
            <td>${empPayrollData._salary}</td>
-           <td>${empPayrollData._startDate}</td>
+           <td>${stringifyDate(empPayrollData._date)}</td>
            <td>
-               <img id="1" name="${empPayrollData._id}" onclick="remove(this)" alt="delete" width="30px" src="../Assets/icons/delete-black-18dp.svg">
-               <img id="1" name="${empPayrollData._id}" onclick="update(this)" alt="edit" width="30px" src="../Assets/icons/create-black-18dp.svg  ">
+               <img id="${empPayrollData._id}" onclick="remove(this)" alt="delete" width="30px" src="../Assets/icons/delete-black-18dp.svg">
+               <img id="${empPayrollData._id}" onclick="update(this)" alt="edit" width="30px" src="../Assets/icons/create-black-18dp.svg  ">
            </td>
        </tr>`
        }
@@ -47,38 +48,6 @@ Format from JS File using Template Literals. */
    }
 
 //UC18 to view Employee Payroll details in a Tabular Format from JSON Object.
-/*
-   const createEmployeePayrollJSON = () => {
-       let empPayrollListLocal = [
-           {
-               _name: 'Mohan Roy',
-               _gender: 'male',
-               _department: [
-                   'Engineering', 'Hr'
-               ],
-               _salary: '400000',
-               _startDate: '21 May 2019',
-               _note: '',
-               _id: new Date().getTime(),
-               _profilePic: '../Assets/profile-images/image2.png'
-           },
-           {
-               _profilePic: '../Assets/profile-images/image1.png',
-               _name: 'Monika choudhary',
-               _gender: 'female',
-               _department: [
-                   'Hr', 'Sale'
-               ],
-               _salary: '200000',
-               _startDate: '20 Feb 2020',
-               _note: '',
-               _id: new Date().getTime(),
-   
-           }
-       ]
-       return empPayrollListLocal
-   }
-*/
 
    //Display Employee Details from JSON Object including the Department
    function getDeptHtml(deptList) {
@@ -89,5 +58,16 @@ Format from JS File using Template Literals. */
        return deptHtml
    }
 
-
-
+    //UC20 to Remove an Employee from the Payroll details.
+     const remove = (node) => {
+     let empPayrollData = empPayrollList.find(empData => empData._id == node.id);
+     if (!empPayrollData) return;
+     const index = empPayrollList
+                   .map(empData => empData._id)
+                   .indexOf(empPayrollData._id);
+     empPayrollList.splice(index, 1);
+     localStorage.setItem("EmployeePayrollList", JSON.stringify(empPayrollList));
+     document.querySelector(".emp-count").textContent = empPayrollList.length;
+     createInnerHtml();
+   }
+   
