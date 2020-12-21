@@ -7,12 +7,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     empPayrollList = getEmployeePayrollDataFromStorage();
     document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHtml();
-}
-);
+    localStorage.removeItem('editEmp');
+});
+
 const getEmployeePayrollDataFromStorage = () => {
-    let employeePayrollList = createEmployeePayrollJSON();
-    localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
-    return localStorage.getItem('EmployeePayrollList') ? JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+      return localStorage.getItem('EmployeePayrollList') ? JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
 }
 
  /*UC17 to view Employee Payroll details in a Tabular
@@ -24,9 +23,10 @@ Format from JS File using Template Literals. */
        indicated by the dollar sign and curly braces 
    */
   createInnerHtml = () => {
-       if (empPayrollList.length == 0) return;
+       
        const headerHtml = `<tr><th></th><th>Name</th><th>Gender</th><th>Department</th>
            <th>Salary</th><th>start Date</th><th>Actions</th></tr>`
+       if(empPayrollList.length == 0) return;   
        let innerHtml = `${headerHtml}`
        for (const empPayrollData of empPayrollList) {
            innerHtml = `${innerHtml}
@@ -47,7 +47,7 @@ Format from JS File using Template Literals. */
    }
 
 //UC18 to view Employee Payroll details in a Tabular Format from JSON Object.
-
+/*
    const createEmployeePayrollJSON = () => {
        let empPayrollListLocal = [
            {
@@ -78,6 +78,7 @@ Format from JS File using Template Literals. */
        ]
        return empPayrollListLocal
    }
+*/
 
    //Display Employee Details from JSON Object including the Department
    function getDeptHtml(deptList) {
@@ -87,3 +88,6 @@ Format from JS File using Template Literals. */
        }
        return deptHtml
    }
+
+
+
