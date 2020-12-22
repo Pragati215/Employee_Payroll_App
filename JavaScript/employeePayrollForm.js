@@ -1,7 +1,10 @@
+let isUpdate = false;
+let employeePayrollObj = {};
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#name');
+    //alert(name);
     const textError = document.querySelector('.text-error');
-   //console.log("name-"+name);
+    //console.log("name-"+name);
     name.addEventListener('input', function () {
         if (name.value.length == 0) {
             textError.textContent = "";
@@ -9,7 +12,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
         }
         try {
             (new EmployeePayrollData()).name = name.value;
-            console.log("name-"+name);
+           // console.log("name-" + name);
             textError.textContent = "";
         } catch (e) {
             textError.textContent = e;
@@ -21,10 +24,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     output.textContent = salary.value;
     salary.addEventListener('input', function () {
         output.textContent = salary.value;
+    
     });
 
 
-const year = document.getElementById('year')
+    const year = document.getElementById('year')
     const month = document.getElementById('month')
     const day = document.getElementById('day')
     const dateError = document.querySelector('.date-error')
@@ -54,6 +58,8 @@ const year = document.getElementById('year')
             return
         } else throw 'Incorrect Date'
     }
+   
+    checkForUpdate();
 });
 //UC11 to create Employee Payroll Object On Save.
 
@@ -83,7 +89,7 @@ const createEmployeePayroll = () => {
     employeePayrollData.salary = getInputValueById('#salary');
     employeePayrollData.note = getInputValueById('#notes');
     let currdate = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
-    employeePayrollData.date = currdate
+    employeePayrollData.date = currdate;
     employeePayrollData.id = Date.parse(new Date());
     //employeePayrollData.date = Date.parse(date);
     //employeePayrollData.startDate = date;
@@ -95,7 +101,7 @@ const createEmployeePayroll = () => {
 
 function createAndUpdateStorage(employeePayrollData) {
     let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-    console.log('printlist-',employeePayrollList);
+    console.log('printlist-', employeePayrollList);
     if (employeePayrollList != null) {
 
         employeePayrollList.push(employeePayrollData);
@@ -104,7 +110,7 @@ function createAndUpdateStorage(employeePayrollData) {
 
         employeePayrollList = [employeePayrollData]
     }
-    
+
     localStorage.setItem("EmployeePayrollList", JSON.stringify(employeePayrollList));
 }
 
@@ -131,6 +137,33 @@ const getInputValueById = (id) => {
     return value;
 }
 
+//UC21 to Update an Employee Payroll details.
+const setForm = () => {
+    setValue('#name', employeePayrollObj._name);
+    setSelectedValues('[name=profile]', employeePayrollObj._profilePic);
+    setSelectedValues('[name=gender]', employeePayrollObj._gender);
+    setSelectedValues('[name=department]', employeePayrollObj._department);
+    setValue('#salary', employeePayrollObj._salary);
+    setTextValue('.salary-output', employeePayrollObj._salary);
+    setValue('#notes', employeePayrollObj._note);
+    let date = stringifyDate(employeePayrollObj._startDate).split(" ");
+    setValue('#day', date[0]);
+    setValue('#month', date[1]);
+    setValue('#year', date[2]);
+}
+
+const setSelectedValues = (propertyValue, value) => {
+    let allItems = document.querySelectorAll(propertyValue);
+    allItems.forEach(item => {
+        if (Array.isArray(value)) {
+            if (value.includes(item.value)) {
+                item.checked = true;
+            }
+        }
+        else if (item.value === value)
+            item.checked = true;
+    });
+}
 //UC13 to reset the form on clicking reset
 const resetForm = () => {
     setValue('#name', ' ');
@@ -139,9 +172,9 @@ const resetForm = () => {
     unsetSelectedValues('[name=department]');
     setValue('#salary', ' ');
     setValue('#notes', ' ');
-    setValue('#day', '1');
-    setValue('#month', 'January');
-    setValue('#year', '2020');
+    setSelectedIndex('#day', 0);
+    setSelectedIndex('#month', 0);
+    setSelectedIndex('#year', 0);
 }
 
 const unsetSelectedValues = (propertyValue) => {
@@ -160,4 +193,18 @@ const setValue = (id, value) => {
     element.value = value;
 }
 
+//UC21 to Update an Employee Payroll details.
+
+const setSelectedIndex = (id, index) => {
+    const element = document.querySelector(id);
+    element.selectedIndex = index;
+}
+
+const checkForUpdate = () => {
+    const employeePayrollJson = localStorage.getItem('editEmp');
+    isUpdate = employeePayrollJson ? true : false;
+    if (!isUpdate) return;
+    employeePayrollObj = JSON.parse(employeePayrollJson);
+    setForm();
+}
 
