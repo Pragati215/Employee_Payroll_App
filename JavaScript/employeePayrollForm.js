@@ -11,7 +11,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
         try {
             new EmployeePayrollData().name = name.value;
-            // console.log("name-" + name);
             textError.textContent = "";
         } catch (e) {
             textError.textContent = e;
@@ -61,14 +60,12 @@ const save = (event) => {
         // Once the data is save moving to the home page to see the data directly
         // Note that this does not mean our home button is redundant
         window.location.replace(site_properties.home_page);
-        //let employeePayrollData = createEmployeePayroll();
-
-        //createAndUpdateStorage(employeePayrollData);
     } catch (e) {
         return;
     }
 };
 
+//UC22 save updated employee payroll into local storage
 /**
 * Now we are not working on local instance as we had the requirement of data to be pre-declared
 */
@@ -136,25 +133,7 @@ const createEmployeePayrollData = (id) => {
     else employeePayrollData.id = id;
     setEmployeePayrollData(employeePayrollData);
     return employeePayrollData;
-    // try {
-    // employeePayrollData.name = getInputValueById('#name');
-    // } catch (e) {
-    // setTextValue('.text-error', e);
-    // throw e;
-    // }
-
-    // employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
-    // employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
-    // employeePayrollData.department = getSelectedValues('[name=department]');
-    // employeePayrollData.salary = getInputValueById('#salary');
-    // employeePayrollData.note = getInputValueById('#notes');
-    // let currdate = getInputValueById('#day') + " " + getInputValueById('#month') + " " + getInputValueById('#year');
-    // employeePayrollData.startDate = currdate;
-    // employeePayrollData.id = Date.parse(new Date());
-    // //employeePayrollData.date = Date.parse(date);
-    // //employeePayrollData.startDate = date;
-    // alert(employeePayrollData.toString());
-    // return employeePayrollData;
+    
 };
 
 /**
