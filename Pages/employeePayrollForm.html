@@ -26,7 +26,7 @@
     </header>
     <!-----UC2----->
     <div class="form-content">
-        <form class="form" action="#" onsubmit="save();">
+        <form class="form" action="#" onsubmit="save(event);">
             <div class="form-head">Employee Payroll form </div>
             <div class="row-content">
                 <label class="label text" for="name">Name</label>
@@ -99,7 +99,7 @@
     <!----UC5-----> 
     <div class="row-content">
         <label class="label text" for="startDate"> Start Date </label>
-        <div>
+        <div id ="date">
         <select id="day" name="Day">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -179,6 +179,6 @@
    <script src="../JavaScript/employeePayrollForm.js"></script>
    <!-----UC9----->
    <script src="../JavaScript/employeePayrollData.js"></script>
-   <div id="data"></div>
+   <!--<div id="data"></div>--->
 </body>
 </html>
