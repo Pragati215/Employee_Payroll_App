@@ -1,0 +1,82 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "_name": "Mohit Jain",
+      "_gender": "male",
+      "_department": [
+        "Finance",
+        "Engineer"
+      ],
+      "_salary": "431000",
+      "_startDate": "19 Dec 2020",
+      "_note": "First",
+      "_profilePic": "../Assets/profile-images/image2.png"
+    },
+    {
+      "id": "3",
+      "_name": "Neha Sharma",
+      "_gender": "female",
+      "_department": [
+        "Finance",
+        "Engineer"
+      ],
+      "_salary": "426000",
+      "_startDate": "15 Dec 2020",
+      "_note": "Third",
+      "_profilePic": "../Assets/profile-images/image3.png"
+    },
+    {
+      "_name": "Pragati",
+      "_profilePic": "../Assets/profile-images/image1.png",
+      "_gender": "female",
+      "_department": [
+        "HR",
+        "Engineer"
+      ],
+      "_salary": "443000",
+      "_note": "check",
+      "_startDate": "14 Feb 2021",
+      "id": "YQG99Zm"
+    },
+    {
+      "_name": "Shreya",
+      "_profilePic": "../Assets/profile-images/image1.png",
+      "_gender": "female",
+      "_department": [
+        "HR",
+        "Engineer"
+      ],
+      "_salary": "459000",
+      "_note": "new HR of company",
+      "_startDate": "1 Feb 2021",
+      "id": "n7LxjV5"
+    },
+    {
+      "_name": "Hrishikesh",
+      "_profilePic": "../Assets/profile-images/image2.png",
+      "_gender": "male",
+      "_department": [
+        "Sales",
+        "Engineer"
+      ],
+      "_salary": "423000",
+      "_note": "new employee",
+      "_startDate": "14 Feb 2021",
+      "id": "HDM_mi5"
+    },
+    {
+      "_name": "Neha ",
+      "_profilePic": "../Assets/profile-images/image1.png",
+      "_gender": "female",
+      "_department": [
+        "Finance",
+        "Engineer"
+      ],
+      "_salary": "438000",
+      "_note": "new employee joined",
+      "_startDate": "12 Feb 2021",
+      "id": "ADIDAr6"
+    }
+  ]
+}
